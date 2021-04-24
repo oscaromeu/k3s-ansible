@@ -36,9 +36,22 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 80
+service: 
+  metadata: 
+    name: prometheus-service
+    namespace: monitoring
+    annotations: 
+      scrape: 'true'
+      port: '9090'
+
+  app: prometheus-server
+  type: NodePort
+  port: 30090
+  targetPort: 9090
+  nodePort: 30090
+
+
+
 
 ingress:
   enabled: false
