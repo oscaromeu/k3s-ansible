@@ -1,0 +1,4 @@
+<svg width="25" height="25" data-value="40">
+  <path class="bg" stroke="#ccc" d="M0 10, 200 10"></path>
+  <path class="meter" stroke="#09c" d="M0 10, 200 10" style="stroke-dasharray: 200; stroke-dashoffset: 200;"></path>
+</svg>
