@@ -1,61 +1,48 @@
-apiVersion: apps/v1
+{{- if .Values.server.enabled -}}
+{{- if not .Values.server.statefulSet.enabled -}}
+apiVersion: {{ template "prometheus.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
-  name: {{ include "prometheus.fullname" . }}
-  labels:
-    {{- include "prometheus.labels" . | nindent 4 }}
+  name: {{ template "prometheus.server.fullname" . }}-deployment
+  namespace: {{ template "prometheus.server.namespace" . }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: {{ .Values.server.replicaCount }}
   selector:
-    matchLabels:
-      {{- include "prometheus.selectorLabels" . | nindent 6 }}
+    matchLabels: 
+      app: {{ template "prometheus.server.fullname" . }}-server
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
-        {{- include "prometheus.selectorLabels" . | nindent 8 }}
+        app: {{ template "prometheus.server.fullname" . }}-server
+        {{- if .Values.server.podLabels}}
+        {{ toYaml .Values.server.podLabels | nindent 8 }}
+        {{- end}}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "prometheus.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: prometheus
+          image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag }}"
+          #imagePullPolicy: "{{ .Values.server.image.pullPolicy }}"
+          args:
+            - --config.file={{ .Values.server.configPath }}
+            - --storage.tsdb.path={{ .Values.server.persistentVolume.mountPath }}
+          {{- range .Values.server.extraFlags }}
+            - --{{ . }}
+          {{- end }}
           ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath:  {{ .Values.server.persistentVolume.mountPath }}
+            - name: prometheus-storage-volume
+              mountPath: /prometheus/
+              
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            defaultMode: 420
+            name: prometheus-server-conf
+
+        - name: prometheus-storage-volume
+          emptyDir: {}
+{{- end -}}
+{{- end -}}
