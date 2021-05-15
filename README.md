@@ -1,10 +1,6 @@
 # ![New Button](docs/img/logo_raspberry-pi.svg) k3s Ansible Deploy Monitoring Playground
 
-This work is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) the goal is to spin up a monitoring infrastructure running in a Kubernetes cluster. 
-
-## K3s Ansible Playbook
-
-Build a Kubernetes cluster using Ansible with k3s. The goal is easily install a Kubernetes cluster on machines running:
+This work is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible). The goal is to spin up a monitoring infrastructure running in a Kubernetes cluster. The project supports the following machines running: 
 
 - [X] Debian
 
