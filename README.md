@@ -1,4 +1,4 @@
-# k3s Ansible Deploy Monitoring Playground ![New Button](docs/img/logo_raspberry-pi.svg)
+# ![New Button](docs/img/logo_raspberry-pi.svg) k3s Ansible Deploy Monitoring Playground
 
 This work is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) the goal is to spin up a monitoring infrastructure running in a Kubernetes cluster. 
 
