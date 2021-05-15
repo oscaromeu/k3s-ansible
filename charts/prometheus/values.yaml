@@ -56,7 +56,6 @@ service:
     annotations: 
       scrape: 'true'
       port: '9090'
-
   app: prometheus-server
   type: NodePort
   port: 30090

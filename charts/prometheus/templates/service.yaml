@@ -4,14 +4,14 @@ metadata:
   name: {{ .Values.service.metadata.name }}
   namespace: {{ .Values.service.metadata.namespace }}
   annotations:
-    prometheus.io/scrape: {{ .Values.service.metadata.annotations.scrape }}
-    prometheus.io/port:  {{ .Values.service.metadata.annotations.port }}
+    prometheus.io/scrape: '{{ .Values.service.metadata.annotations.scrape }}'
+    prometheus.io/port:  '{{ .Values.service.metadata.annotations.port }}'
 
 spec:
   selector:
     app: {{ .Values.service.app }}
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.type }}
+    - port: {{ .Values.service.nodePort }}
       targetPort: {{ .Values.service.targetPort }} 
       nodePort: {{ .Values.service.nodePort }}
