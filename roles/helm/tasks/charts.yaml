@@ -1,0 +1,18 @@
+- name: Create /tmp/charts directory
+  file:
+    path: /tmp/charts
+    state: directory
+    owner: "{{ ansible_user }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: Copy charts directory to remote host
+  ansible.builtin.copy:
+    src: charts/prometheus
+    dest: /tmp/charts
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "u=rwx,g=rx,o="
+
+- name: Deploy Prometheus chart from local path to monitoring namespace
+  command: >-
+    helm install prometheus /tmp/charts/prometheus --kubeconfig ~{{ ansible_user }}/.kube/config

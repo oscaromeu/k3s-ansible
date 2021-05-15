@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: prom/prometheus
+  repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "main"
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: "prometheus"
@@ -56,6 +56,7 @@ service:
     annotations: 
       scrape: 'true'
       port: '9090'
+
   app: prometheus-server
   type: NodePort
   port: 30090

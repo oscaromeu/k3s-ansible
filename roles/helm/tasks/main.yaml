@@ -1,38 +1,15 @@
----
-- name: Check if Helm binary exists.
-  stat:
-    path: "{{ helm_bin_path }}"
-  register: helm_check
 
-- name: Check Helm version.
-  command: "{{ helm_bin_path }} version"
-  failed_when: false
-  changed_when: false
-  register: helm_existing_version
+- include: install.yaml
+  when: install|default(false)
+  tags:
+     - install
 
-- name: Download helm.
-  unarchive:
-    src: https://get.helm.sh/helm-{{ helm_version }}-{{ helm_platform }}-{{ helm_arch }}.tar.gz
-    dest: /tmp
-    remote_src: true
-    mode: 0755
-  register: helm_download
-  
-- debug:
-    msg: helm_existing_version
-
-- name: Copy helm binary into place.
-  copy:
-    src: "/tmp/{{ helm_platform }}-{{ helm_arch }}/helm"
-    dest: "{{ helm_bin_path }}"
-    mode: 0755
-    remote_src: true
-  become: true
-
-- name: Uninstall helm 
-  command: rm -rf {{ helm_bin_path }}
-  become: true
-  failed_when: false
+- include: uninstall.yaml
   when: uninstall|default(false)
   tags:
      - uninstall
+
+- include: charts.yaml
+  when: charts|default(false)
+  tags:
+     - charts
