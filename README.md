@@ -67,7 +67,7 @@ ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 
 ## TODO
 - [ ] Deploy the following components via helm:
-    - [ ] Prometheus
+    - [ ] ![progress](docs/img/25_progress_bar.svg) Prometheus
     - [ ] Grafana
     - [ ] Influxdb
     - [ ] Telegraf
