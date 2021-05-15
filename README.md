@@ -1,4 +1,4 @@
-# ![New Button](docs/img/logo_raspberry-pi.svg) k3s Ansible Deploy Monitoring Playground
+# ![Raspberry Pi](docs/img/logo_raspberry-pi.svg) k3s Ansible Deploy Monitoring Playground
 
 **TODO**
 
