@@ -65,16 +65,16 @@ To remove the provisioned infrastructure use the following command:
 ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
-## TODO
+## Status and Backlog
 - [ ] Deploy the following components via helm:
-    - [ ] ![progress](docs/img/25_progress_bar.svg) Prometheus
+    - [ ] Prometheus **(WIP)**
     - [ ] Grafana
     - [ ] Influxdb
     - [ ] Telegraf
     - [ ] Redis + Logstash + Elasticsearch Cluster
     - [ ] Elastalert
     - [ ] ArgoCD
-- [ ] ...
+- [ ] ... TODO ...
 
 
 
