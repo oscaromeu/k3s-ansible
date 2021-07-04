@@ -13,8 +13,8 @@ on processor architecture:
 
 ## System requirements
 
-Deployment environment must have Ansible 2.4.0+
-Master and nodes must have passwordless SSH access
++ Deployment environment must have Ansible 2.4.0+
++ Master and nodes must have passwordless SSH access
 
 ## Usage
 
@@ -48,15 +48,6 @@ Start provisioning of the cluster using the following command:
 ansible-playbook site.yml -i inventory/my-cluster/hosts.ini
 ```
 
-### Kubeconfig
-
-To get access to your **Kubernetes** cluster just
-
-```bash
-scp debian@master_ip:~/.kube/config ~/.kube/config
-```
-
-
 ## Remove
 
 To remove the provisioned infrastructure use the following command:
@@ -67,16 +58,13 @@ ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 
 ## Status and Backlog
 - [ ] Deploy the following components via helm:
+    - [ ] Redis + Logstash + Elasticsearch **(WIP)**
     - [ ] Prometheus **(WIP)**
     - [ ] Grafana
     - [ ] Influxdb
     - [ ] Telegraf
-    - [ ] Redis + Logstash + Elasticsearch Cluster
     - [ ] Elastalert
     - [ ] ArgoCD
-- [ ] ... TODO ...
-
-
 
 ## Author
 

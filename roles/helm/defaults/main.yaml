@@ -1,7 +1,29 @@
 ---
 # See available releases: https://github.com/helm/helm/releases/
+# Specific settings for Helm deployment on master node 
 helm_version: 'v3.2.1'
 helm_platform: linux
 helm_arch: arm64
-
 helm_bin_path: /usr/local/bin/helm
+
+# Specify where charts should be copied on master node
+#
+helm_chart_path: /home/pi/k3s-monitoring-playground/charts
+
+# List of avaible charts to deploy, comment the lines below to select 
+# the components that will be deployed
+
+helm_chart_repositories:
+  elasticsearch: https://helm.elastic.co
+    
+
+helm_local_chart_deployment:
+  #  - prometheus
+
+helm_repository_chart_deployment:
+  - repo_name: elastic
+    repo_deployment_name: elasticsearch
+  - repo_name: elastic
+    repo_deployment_name: kibana
+  - repo_name: elastic
+    repo_deployment_name: logstash

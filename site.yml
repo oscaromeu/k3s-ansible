@@ -23,5 +23,6 @@
   roles:
     - role: geerlingguy.pip
     - { role: helm, "install":true, "charts":true }
+    - { role: postsetup, "config":true }
 
 

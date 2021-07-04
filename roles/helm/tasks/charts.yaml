@@ -1,18 +1,33 @@
-- name: Create /tmp/charts directory
+- name: Create /home/pi/k3s-monitoring-playground/charts directory
   file:
-    path: /tmp/charts
+    path: /home/pi/k3s-monitoring-playground/charts
     state: directory
     owner: "{{ ansible_user }}"
     mode: "u=rwx,g=rx,o="
 
 - name: Copy charts directory to remote host
   ansible.builtin.copy:
-    src: charts/prometheus
-    dest: /tmp/charts
+    src: charts/
+    dest: /home/pi/k3s-monitoring-playground/charts
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: "u=rwx,g=rx,o="
 
-- name: Deploy Prometheus chart from local path to monitoring namespace
+- name: Add {{ helm_chart_repositories }} helm repository
   command: >-
-    helm install prometheus /tmp/charts/prometheus --kubeconfig ~{{ ansible_user }}/.kube/config
+    helm repo add {{ item.key }} {{ item.value }} 
+  loop: "{{ helm_chart_repositories | dict2items }}" 
+
+    #- name: Deploy "{{ helm_chart_deployment }}" chart from local path to monitoring namespace
+    #  command: >-
+    #    helm install {{ helm_chart_deployment }} {{ helm_chart_path }}/{{ helm_chart_deployment }} --kubeconfig ~{{ ansible_user }}/.kube/config
+    #  when: helm_local_chart_deployment|length > 0
+    #
+- name: Deploying {{ item.repo_deployment_name }} instance
+  command: >-
+    helm upgrade --install  {{ item.repo_deployment_name }} {{ item.repo_name }}/{{ item.repo_deployment_name }} -f {{ helm_chart_path }}/{{ item.repo_deployment_name }}/values.yml --kubeconfig ~{{ ansible_user }}/.kube/config
+  loop: "{{ helm_repository_chart_deployment }}"
+
+    #- name: Deploy a Kibana instance
+    #  command: >-
+    #    helm install kibana elastic/kibana --kubeconfig ~{{ ansible_user }}/.kube/config
