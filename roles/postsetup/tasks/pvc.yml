@@ -1,0 +1,4 @@
+
+- name: Create influxdb pvc 
+  shell: >-
+    kubectl create -f /home/pi/k3s-monitoring-playground/manifest/influxdb-pvc.yml 

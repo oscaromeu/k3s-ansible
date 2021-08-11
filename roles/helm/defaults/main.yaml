@@ -15,10 +15,13 @@ helm_chart_path: /home/pi/k3s-monitoring-playground/charts
 
 helm_chart_repositories:
   elasticsearch: https://helm.elastic.co
+  influxdata: https://helm.influxdata.com/
+    #bitnami: https://charts.bitnami.com/bitnami
     
 
 helm_local_chart_deployment:
-  #  - prometheus
+  #- prometheus
+  - influxdb2 
 
 helm_repository_chart_deployment:
   - repo_name: elastic
@@ -27,3 +30,5 @@ helm_repository_chart_deployment:
     repo_deployment_name: kibana
   - repo_name: elastic
     repo_deployment_name: logstash
+  - repo_name: influxdata 
+    repo_deployment_name: influxdb2
