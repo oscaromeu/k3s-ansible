@@ -6,7 +6,7 @@
     mode: "u=rwx,g=rx,o="
 
 - name: Copy charts directory to remote host
-  ansible.builtin.copy:
+  copy:
     src: charts/
     dest: /home/pi/k3s-monitoring-playground/charts
     owner: "{{ ansible_user }}"
