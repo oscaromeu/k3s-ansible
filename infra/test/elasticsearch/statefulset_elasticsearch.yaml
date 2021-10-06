@@ -75,4 +75,4 @@ spec:
       storageClassName: do-block-storage
       resources:
         requests:
-          storage: 100Gi
+          storage: 5Gi
