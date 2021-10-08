@@ -1,0 +1,48 @@
+{{- if .Values.server.enabled -}}
+{{- if not .Values.server.statefulSet.enabled -}}
+apiVersion: {{ template "prometheus.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: {{ template "prometheus.server.fullname" . }}-deployment
+  namespace: {{ template "prometheus.server.namespace" . }}
+spec:
+  replicas: {{ .Values.server.replicaCount }}
+  selector:
+    matchLabels: 
+      app: {{ template "prometheus.server.fullname" . }}-server
+  template:
+    metadata:
+      labels:
+        app: {{ template "prometheus.server.fullname" . }}-server
+        {{- if .Values.server.podLabels}}
+        {{ toYaml .Values.server.podLabels | nindent 8 }}
+        {{- end}}
+    spec:
+      containers:
+        - name: prometheus
+          image: "{{ .Values.server.image.repository }}:{{ .Values.server.image.tag }}"
+          #imagePullPolicy: "{{ .Values.server.image.pullPolicy }}"
+          args:
+            - --config.file={{ .Values.server.configPath }}
+            - --storage.tsdb.path={{ .Values.server.persistentVolume.mountPath }}
+          {{- range .Values.server.extraFlags }}
+            - --{{ . }}
+          {{- end }}
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config-volume
+              mountPath:  {{ .Values.server.persistentVolume.mountPath }}
+            - name: prometheus-storage-volume
+              mountPath: /prometheus/
+              
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            defaultMode: 420
+            name: prometheus-server-conf
+
+        - name: prometheus-storage-volume
+          emptyDir: {}
+{{- end -}}
+{{- end -}}

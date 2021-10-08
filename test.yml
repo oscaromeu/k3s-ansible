@@ -1,0 +1,43 @@
+---
+- hosts: master
+  vars:
+    extra_server_args:
+      - flag: "disable"
+  tasks:
+    #    - name: Print a message
+    #      debug:
+    #        msg: "{{ extra_server_args|is_list }}"
+    #
+    #    - name: Copy K3s service file
+    #      register: k3s_service
+    #      template:
+    #        src: "/home/oscaromeu/Documents/Repos/gh/k3s-ansible-deploy-monitoring-playground/roles/k3s/master/templates/k3s.service.j2"
+    #        dest: "$HOME/k3s.service"
+    #        owner: pi
+    #        group: pi
+    #        mode: 0644
+
+    #    - name: Using dict2items
+    #      ansible.builtin.debug:
+    #        msg: "{{ item.key }} - {{ item.value }}"
+    #      loop: "{{ tag_data | dict2items }}"
+    #      vars:
+    #        tag_data:
+    #          Environment: dev
+    #          Application: payment
+
+    - name: looping list 
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      loop: "{{ tag_data }}"
+      vars:
+        tag_data:
+          - dev
+          - payment
+
+
+    - name: print variable 
+      ansible.builtin.debug:
+        msg: "{{ tag_data }}"
+      vars:
+        tag_data: hola
