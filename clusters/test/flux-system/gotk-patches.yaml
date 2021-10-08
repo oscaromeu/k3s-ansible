@@ -43,12 +43,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /healthz
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /healthz
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         name: manager
         ports:
         - containerPort: 8080
@@ -63,12 +63,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /readyz
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /readyz
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         resources:
           limits:
             cpu: 1000m
@@ -133,12 +133,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /healthz
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /healthz
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         name: manager
         ports:
         - containerPort: 9090
@@ -157,12 +157,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /readyz
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /readyz
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         resources:
           limits:
             cpu: 1000m
@@ -232,12 +232,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /healthz
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /healthz
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         name: manager
         ports:
         - containerPort: 9090
@@ -253,12 +253,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         resources:
           limits:
             cpu: 1000m
@@ -330,12 +330,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /healthz
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /healthz
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         name: manager
         ports:
         - containerPort: 8080
@@ -350,12 +350,12 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           timeoutSeconds: 60
-        startupProbe:
-          httpGet:
-            path: /readyz
-            port: healthz
-          failureThreshold: 30
-          periodSeconds: 10  
+            #        startupProbe:
+            #          httpGet:
+            #            path: /readyz
+            #            port: healthz
+            #          failureThreshold: 30
+            #          periodSeconds: 10  
         resources:
           limits:
             cpu: 1000m
