@@ -24,11 +24,11 @@ spec:
     spec:
       containers:
       - args:
-        - --events-addr=http://notification-controller/
-        - --watch-all-namespaces=true
-        - --log-level=info
-        - --log-encoding=json
-        - --enable-leader-election
+        - "--events-addr=http://notification-controller/"
+        - "--watch-all-namespaces=true"
+        - "--log-level=debug"
+        - "--log-json"
+        - "--enable-leader-election"
         env:
         - name: RUNTIME_NAMESPACE
           valueFrom:
@@ -72,7 +72,6 @@ spec:
       - emptyDir: {}
         name: temp
 ---
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -98,10 +97,10 @@ spec:
     spec:
       containers:
       - args:
-        - --watch-all-namespaces=true
-        - --log-level=info
-        - --log-encoding=json
-        - --enable-leader-election
+        - "--watch-all-namespaces=true"
+        - "--log-level=debug"
+        - "-log-json"
+        - "--enable-leader-election"
         env:
         - name: RUNTIME_NAMESPACE
           valueFrom:
@@ -176,13 +175,13 @@ spec:
     spec:
       containers:
       - args:
-        - --events-addr=http://notification-controller/
-        - --watch-all-namespaces=true
-        - --log-level=info
-        - --log-encoding=json
-        - --enable-leader-election
-        - --storage-path=/data
-        - --storage-adv-addr=source-controller.$(RUNTIME_NAMESPACE).svc.cluster.local.
+        - "--events-addr=http://notification-controller/"
+        - "--watch-all-namespaces=true"
+        - "--log-level=debug"
+        - "--log-json"
+        - "--enable-leader-election"
+        - "--storage-path=/data"
+        - "--storage-adv-addr=source-controller.$(RUNTIME_NAMESPACE).svc.cluster.local."
         env:
         - name: RUNTIME_NAMESPACE
           valueFrom:
@@ -258,11 +257,11 @@ spec:
     spec:
       containers:
       - args:
-        - --events-addr=http://notification-controller/
-        - --watch-all-namespaces=true
-        - --log-level=info
-        - --log-encoding=json
-        - --enable-leader-election
+        - "--events-addr=http://notification-controller/"
+        - "--watch-all-namespaces=true"
+        - "--log-level=debug"
+        - "--log-json"
+        - "--enable-leader-election"
         env:
         - name: RUNTIME_NAMESPACE
           valueFrom:
