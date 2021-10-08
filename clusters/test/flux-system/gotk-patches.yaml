@@ -40,7 +40,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -60,7 +60,7 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -130,7 +130,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -154,7 +154,7 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -229,7 +229,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -250,7 +250,7 @@ spec:
           httpGet:
             path: /
             port: http
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -327,7 +327,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -347,7 +347,7 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 3
+          initialDelaySeconds: 10
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
