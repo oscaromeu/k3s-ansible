@@ -82,9 +82,9 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: temp
+      nodeName: k1
       nodeSelector:
         kubernetes.io/os: linux
-        name: k1
       serviceAccountName: helm-controller
       terminationGracePeriodSeconds: 600
       volumes:
@@ -177,9 +177,9 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: temp
+      nodeName: k1
       nodeSelector:
         kubernetes.io/os: linux
-        name: k1
       serviceAccountName: notification-controller
       terminationGracePeriodSeconds: 10
       volumes:
@@ -276,8 +276,8 @@ spec:
           name: data
         - mountPath: /tmp
           name: tmp
+      nodeName: k1
       nodeSelector:
-        name: k1
         kubernetes.io/os: linux
       securityContext:
         fsGroup: 1337
@@ -372,8 +372,8 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: temp
+      nodeName: k1
       nodeSelector:
-        name: k1
         kubernetes.io/os: linux
       securityContext:
         fsGroup: 1337
