@@ -40,9 +40,9 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 45
+          initialDelaySeconds: 120 
           periodSeconds: 3
-          timeoutSeconds: 60
+          timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -82,7 +82,7 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: temp
-      nodeName: k1
+      nodeName: k2
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: helm-controller
@@ -131,9 +131,9 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 45
+          initialDelaySeconds: 120 
           periodSeconds: 3
-          timeoutSeconds: 60
+          timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -155,9 +155,9 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 45
+          initialDelaySeconds: 120 
           periodSeconds: 3
-          timeoutSeconds: 60
+          timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /readyz
@@ -177,7 +177,7 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: temp
-      nodeName: k1
+      nodeName: k3
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: notification-controller
@@ -231,9 +231,9 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 45
+          initialDelaySeconds: 120 
           periodSeconds: 3
-          timeoutSeconds: 60
+          timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -246,15 +246,15 @@ spec:
           name: http
         - containerPort: 8080
           name: http-prom
-            #  - containerPort: 9440
-            #    name: healthz
-            #  readinessProbe:
-            #    httpGet:
-            #      path: /
-            #      port: http
-            #    initialDelaySeconds: 10
-            #    periodSeconds: 3
-            #    timeoutSeconds: 60
+        - containerPort: 9440
+          name: healthz
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+          initialDelaySeconds: 120 
+          periodSeconds: 3
+          timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /
@@ -263,11 +263,11 @@ spec:
             #          periodSeconds: 10  
         resources:
           limits:
-            cpu: 1000m
-            memory: 1Gi
+            cpu: 2000m
+            memory: 2Gi
           requests:
-            cpu: 50m
-            memory: 64Mi
+            cpu: 200m
+            memory: 256Mi
         securityContext:
           allowPrivilegeEscalation: true
           readOnlyRootFilesystem: true
@@ -330,9 +330,9 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 45
+          initialDelaySeconds: 120 
           periodSeconds: 3
-          timeoutSeconds: 60
+          timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -350,9 +350,9 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 45
+          initialDelaySeconds: 120 
           periodSeconds: 3
-          timeoutSeconds: 60
+          timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /readyz
