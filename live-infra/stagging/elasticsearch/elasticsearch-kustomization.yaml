@@ -5,7 +5,7 @@ metadata:
   namespace: monitoring 
 spec:
   interval: 5m0s
-  path: ./elasticsearch
+  path: ./live-infra/stagging
   prune: true
   sourceRef:
     kind: GitRepository
