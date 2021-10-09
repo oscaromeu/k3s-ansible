@@ -40,7 +40,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 90
             #        startupProbe:
@@ -60,7 +60,7 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 45
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 60
             #        startupProbe:
@@ -131,7 +131,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 90
             #        startupProbe:
@@ -155,7 +155,7 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 90
             #        startupProbe:
@@ -231,7 +231,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 90
             #        startupProbe:
@@ -252,7 +252,7 @@ spec:
           httpGet:
             path: /
             port: http
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 90
             #        startupProbe:
@@ -266,8 +266,8 @@ spec:
             cpu: 2000m
             memory: 2Gi
           requests:
-            cpu: 200m
-            memory: 256Mi
+            cpu: 1000m
+            memory: 1Gi 
         securityContext:
           allowPrivilegeEscalation: true
           readOnlyRootFilesystem: true
@@ -330,7 +330,7 @@ spec:
           httpGet:
             path: /healthz
             port: healthz
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 90
             #        startupProbe:
@@ -350,7 +350,7 @@ spec:
           httpGet:
             path: /readyz
             port: healthz
-          initialDelaySeconds: 120 
+          initialDelaySeconds: 30 
           periodSeconds: 3
           timeoutSeconds: 90
             #        startupProbe:
