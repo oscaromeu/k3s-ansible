@@ -82,7 +82,7 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: temp
-      nodeName: k2
+      nodeName: k1
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: helm-controller
@@ -177,7 +177,7 @@ spec:
         volumeMounts:
         - mountPath: /tmp
           name: temp
-      nodeName: k3
+      nodeName: k1
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: notification-controller
