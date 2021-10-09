@@ -252,9 +252,9 @@ spec:
           httpGet:
             path: /
             port: http
-          initialDelaySeconds: 30 
-          periodSeconds: 3
-          timeoutSeconds: 90
+              #initialDelaySeconds: 1 
+              #periodSeconds: 3
+              #timeoutSeconds: 90
             #        startupProbe:
             #          httpGet:
             #            path: /
@@ -263,10 +263,10 @@ spec:
             #          periodSeconds: 10  
         resources:
           limits:
-            cpu: 2000m
+            cpu: 2 
             memory: 2Gi
           requests:
-            cpu: 1000m
+            cpu: 1
             memory: 1Gi 
         securityContext:
           allowPrivilegeEscalation: true
