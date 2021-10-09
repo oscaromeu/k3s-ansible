@@ -36,13 +36,13 @@ spec:
               fieldPath: metadata.namespace
         image: ghcr.io/fluxcd/helm-controller-arm64:v0.4.4
         imagePullPolicy: IfNotPresent
-          #livenessProbe:
-          #  httpGet:
-          #    path: /healthz
-          #    port: healthz
-          #  initialDelaySeconds: 10
-          #  periodSeconds: 3
-          #  timeoutSeconds: 60
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: healthz
+          initialDelaySeconds: 45
+          periodSeconds: 3
+          timeoutSeconds: 60
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -53,16 +53,16 @@ spec:
         ports:
         - containerPort: 8080
           name: http-prom
-            #    - containerPort: 9440
-            #      name: healthz
-            #      protocol: TCP
-            #    readinessProbe:
-            #      httpGet:
-            #        path: /readyz
-            #        port: healthz
-            #      initialDelaySeconds: 10
-            #      periodSeconds: 3
-            #      timeoutSeconds: 60
+        - containerPort: 9440
+          name: healthz
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: healthz
+          initialDelaySeconds: 45
+          periodSeconds: 3
+          timeoutSeconds: 60
             #        startupProbe:
             #          httpGet:
             #            path: /readyz
@@ -84,6 +84,7 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
+        name: k1
       serviceAccountName: helm-controller
       terminationGracePeriodSeconds: 600
       volumes:
@@ -126,13 +127,13 @@ spec:
               fieldPath: metadata.namespace
         image: ghcr.io/fluxcd/notification-controller-arm64:v0.5.0
         imagePullPolicy: IfNotPresent
-          #    livenessProbe:
-          #      httpGet:
-          #        path: /healthz
-          #        port: healthz
-          #      initialDelaySeconds: 10
-          #      periodSeconds: 3
-          #      timeoutSeconds: 60
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: healthz
+          initialDelaySeconds: 45
+          periodSeconds: 3
+          timeoutSeconds: 60
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -147,16 +148,16 @@ spec:
           name: http-webhook
         - containerPort: 8080
           name: http-prom
-            #    - containerPort: 9440
-            #      name: healthz
-            #      protocol: TCP
-            #    readinessProbe:
-            #      httpGet:
-            #        path: /readyz
-            #        port: healthz
-            #      initialDelaySeconds: 10
-            #      periodSeconds: 3
-            #      timeoutSeconds: 60
+        - containerPort: 9440
+          name: healthz
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: healthz
+          initialDelaySeconds: 45
+          periodSeconds: 3
+          timeoutSeconds: 60
             #        startupProbe:
             #          httpGet:
             #            path: /readyz
@@ -178,6 +179,7 @@ spec:
           name: temp
       nodeSelector:
         kubernetes.io/os: linux
+        name: k1
       serviceAccountName: notification-controller
       terminationGracePeriodSeconds: 10
       volumes:
@@ -225,13 +227,13 @@ spec:
               fieldPath: metadata.namespace
         image: ghcr.io/fluxcd/source-controller-arm64:v0.5.6
         imagePullPolicy: IfNotPresent
-          #  livenessProbe:
-          #    httpGet:
-          #      path: /healthz
-          #      port: healthz
-          #    initialDelaySeconds: 10
-          #    periodSeconds: 3
-          #    timeoutSeconds: 60
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: healthz
+          initialDelaySeconds: 45
+          periodSeconds: 3
+          timeoutSeconds: 60
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -275,6 +277,7 @@ spec:
         - mountPath: /tmp
           name: tmp
       nodeSelector:
+        name: k1
         kubernetes.io/os: linux
       securityContext:
         fsGroup: 1337
@@ -323,13 +326,13 @@ spec:
               fieldPath: metadata.namespace
         image: ghcr.io/fluxcd/kustomize-controller-arm64:v0.5.3
         imagePullPolicy: IfNotPresent
-          # livenessProbe:
-          #   httpGet:
-          #     path: /healthz
-          #     port: healthz
-          #   initialDelaySeconds: 10
-          #   periodSeconds: 3
-          #   timeoutSeconds: 60
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: healthz
+          initialDelaySeconds: 45
+          periodSeconds: 3
+          timeoutSeconds: 60
             #        startupProbe:
             #          httpGet:
             #            path: /healthz
@@ -340,16 +343,16 @@ spec:
         ports:
         - containerPort: 8080
           name: http-prom
-            #    - containerPort: 9440
-            #      name: healthz
-            #      protocol: TCP
-            #    readinessProbe:
-            #      httpGet:
-            #        path: /readyz
-            #        port: healthz
-            #      initialDelaySeconds: 10
-            #      periodSeconds: 3
-            #      timeoutSeconds: 60
+        - containerPort: 9440
+          name: healthz
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: healthz
+          initialDelaySeconds: 45
+          periodSeconds: 3
+          timeoutSeconds: 60
             #        startupProbe:
             #          httpGet:
             #            path: /readyz
@@ -370,6 +373,7 @@ spec:
         - mountPath: /tmp
           name: temp
       nodeSelector:
+        name: k1
         kubernetes.io/os: linux
       securityContext:
         fsGroup: 1337
