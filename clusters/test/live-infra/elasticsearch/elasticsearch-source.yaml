@@ -8,5 +8,5 @@ spec:
   interval: 30s
   ref:
     branch: master
-  url: https://github.com/oscaromeu/k3s-ansible-deploy-monitoring-playground/clusters/test/live-infra/elasticsearch
+  url: https://github.com/oscaromeu/k3s-ansible-deploy-monitoring-playground/clusters/test/live-infra
 
