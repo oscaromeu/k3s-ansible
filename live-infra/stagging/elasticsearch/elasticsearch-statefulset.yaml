@@ -22,7 +22,7 @@ spec:
             limits:
               cpu: 1000m
             requests:
-              cpu: 100m
+              cpu: 300m
         ports:
         - containerPort: 9200
           name: rest
@@ -61,11 +61,11 @@ spec:
         command: ["sysctl", "-w", "vm.max_map_count=262144"]
         securityContext:
           privileged: true
-            #      - name: increase-fd-ulimit
-            #        image: busybox
-            #        command: ["sh", "-c", "ulimit -n 65536"]
-            #        securityContext:
-            #          privileged: true
+      - name: increase-fd-ulimit
+        image: busybox
+        command: ["sh", "-c", "ulimit -n 65536"]
+        securityContext:
+          privileged: true
   volumeClaimTemplates:
   - metadata:
       name: data
