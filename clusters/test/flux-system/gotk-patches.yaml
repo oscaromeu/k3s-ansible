@@ -197,7 +197,7 @@ metadata:
   name: source-controller
   namespace: flux-system
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: source-controller
