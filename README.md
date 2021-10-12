@@ -1,15 +1,16 @@
-# ![Raspberry Pi](docs/img/logo_raspberry-pi.svg) k3s Ansible Deploy Monitoring Playground
+# ![Raspberry Pi](docs/img/logo_raspberry-pi.svg) k3s deployment playground 
 
-**TODO**
+## TODO
 
-This work is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible). The goal is to spin up a monitoring infrastructure running in a Kubernetes cluster. The project supports the following machines running: 
-
+This project is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and the goal is to easily spin up and configure k3s cluster with all the needed tools with Ansible. 
+ 
 - [X] Debian
+- [X] Ubuntu
+- [ ] Arch Linux
 
 on processor architecture:
 
 - [X] arm64
-- [X] armhf
 
 ## System requirements
 
@@ -57,14 +58,20 @@ ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
 ## Status and Backlog
-- [ ] Deploy the following components via helm:
-    - [ ] Redis + Logstash + Elasticsearch **(WIP)**
-    - [ ] Prometheus **(WIP)**
-    - [ ] Grafana
-    - [ ] Influxdb
-    - [ ] Telegraf
-    - [ ] Elastalert
-    - [ ] ArgoCD
+- [ ] Update README (WIP)
+- [ ] Support installation of Flux V2 configured via config file (WIP)
+- [ ] Automatically Deploying Manifest and Helm Charts (WIP)
+- [ ] Review roles (WIP)
+- [ ] Support configure K3s with a configuration file avaible from v1.19.1+k3s1
+- [ ] Support via configuration file:
+  - [ ] Configure K3s with a configuration file avaible from v1.19.1+k3s1
+  - [ ] Deploy High Availability with External DB
+  - [ ] Deploy High Availability with Embedded DB
+  - [ ] Support different cluster datastore options
+  - [ ] Support Private registry configuration
+- [ ] Customize Traefik via HelmChartConfig manifest
+- [ ] Install Rancher Helm Chart
+- [ ] Support Arch based linux distros running on Raspberry Pi
 
 ## Author
 

@@ -9,7 +9,7 @@
   tags:
      - uninstall
 
-- include: charts.yaml
-  when: charts|default(false)
-  tags:
-     - charts
+#- include: charts.yaml
+#  when: charts|default(false)
+#  tags:
+#     - charts
