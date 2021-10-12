@@ -1,4 +1,4 @@
-# ![Raspberry Pi](docs/img/logo_raspberry-pi.svg) k3s deployment playground 
+# ![Raspberry Pi](docs/img/logo_raspberry-pi.svg) k3s playground 
 
 ## TODO
 
