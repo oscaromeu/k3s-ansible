@@ -62,6 +62,8 @@ ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 - [ ] Support installation of Flux V2 configured via config file (WIP)
 - [ ] Automatically Deploying Manifest and Helm Charts (WIP)
 - [ ] Review roles (WIP)
+- [ ] Deploy the default K8s dashboard (WIP) 
+- [ ] Support to deploy rancher-monitoring
 - [ ] Support configure K3s with a configuration file avaible from v1.19.1+k3s1
 - [ ] Support via configuration file:
   - [ ] Configure K3s with a configuration file avaible from v1.19.1+k3s1
@@ -69,9 +71,11 @@ ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
   - [ ] Deploy High Availability with Embedded DB
   - [ ] Support different cluster datastore options
   - [ ] Support Private registry configuration
+- [ ] Support to deploy a handcrafted monitoring solution for the k3s cluster.
 - [ ] Customize Traefik via HelmChartConfig manifest
 - [ ] Install Rancher Helm Chart
 - [ ] Support Arch based linux distros running on Raspberry Pi
+
 
 ## Author
 
