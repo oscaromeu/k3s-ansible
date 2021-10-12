@@ -2,7 +2,7 @@
 
 ## TODO
 
-This project is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and the goal is to easily spin up and configure k3s cluster with all the needed tools with Ansible. 
+This project is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and the goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible. 
  
 - [X] Debian
 - [X] Ubuntu
