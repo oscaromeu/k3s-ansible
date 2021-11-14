@@ -13,7 +13,7 @@ Deployment environment must have Ansible > 2.4.0+. Master and worker nodes its d
 on processor architecture:
 
 - [X] arm64
-
+- [X] x64
 
 ## TODO
 
@@ -57,7 +57,7 @@ To remove the provisioned infrastructure use the following command:
 ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
-## Status and Backlog
+## MVP Status and Backlog
 - [X] Deploy the default K8s dashboard
 - [X] Acces kubectl without sudo
 - [ ] Testing with molecule
