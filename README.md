@@ -1,21 +1,21 @@
 # ![Raspberry Pi](docs/img/logo_raspberry-pi.svg) k3s playground 
 
-## TODO
 
-This project is derived from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and the goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible. 
- 
+This project starts from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and adds some features. The goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible. 
+
+## Prerequisites 
+
+Deployment environment must have Ansible > 2.4.0+. Master and worker nodes its desired that have passwordless SSH access. This role has been tested againts the following distributions:
+
 - [X] Debian
-- [X] Ubuntu
 - [ ] Arch Linux
 
 on processor architecture:
 
 - [X] arm64
 
-## System requirements
 
-+ Deployment environment must have Ansible 2.4.0+
-+ Master and nodes must have passwordless SSH access
+## TODO
 
 ## Usage
 
@@ -58,28 +58,29 @@ ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
 ## Status and Backlog
-- [ ] Update README (WIP)
-- [ ] Support installation of Flux V2 configured via config file (WIP)
-- [ ] Automatically Deploying Manifest and Helm Charts (WIP)
-- [ ] Review roles (WIP)
-- [ ] Deploy the default K8s dashboard (WIP) 
-- [ ] Support to deploy rancher-monitoring
-- [ ] Support configure K3s with a configuration file avaible from v1.19.1+k3s1
-- [ ] Support via configuration file:
-  - [ ] Configure K3s with a configuration file avaible from v1.19.1+k3s1
-  - [ ] Deploy High Availability with External DB
-  - [ ] Deploy High Availability with Embedded DB
-  - [ ] Support different cluster datastore options
-  - [ ] Support Private registry configuration
-- [ ] Support to deploy a handcrafted monitoring solution for the k3s cluster.
-- [ ] Customize Traefik via HelmChartConfig manifest
-- [ ] Install Rancher Helm Chart
+- [X] Deploy the default K8s dashboard
+- [X] Acces kubectl without sudo
+- [ ] Testing with molecule
+- [ ] Choose to deploy the cluster with the following tools
+  - [ ] Flux
+  - [ ] Helm
+  - [ ] Kustomize
+- [ ] Choose to deploy Metallb instead of the embedded LB 
+- [ ] Configure K3s with a configuration file avaible from v1.19.1+k3s1
+- [ ] Auto-deploying Manifests see https://rancher.com/docs/k3s/latest/en/advanced/
 - [ ] Support Arch based linux distros running on Raspberry Pi
-
+- [ ] Deploy High Availability with External DB
+- [ ] Redo the README  
 
 ## Author
 
 oscaromeu (https://github.com/oscaromeu)
+
+## Original Work 
+
+https://github.com/itwars
+
+https://github.com/k3s-io/k3s-ansible
 
 ## License
 

@@ -8,27 +8,15 @@ helm_bin_path: /usr/local/bin/helm
 
 # Specify where charts should be copied on master node
 #
-helm_chart_path: /home/pi/k3s-monitoring-playground/charts
+helm_chart_values_path: /home/pi/repos/helm-charts-values
 
 # List of avaible charts to deploy, comment the lines below to select 
 # the components that will be deployed
 
 helm_chart_repositories:
-  elasticsearch: https://helm.elastic.co
-  influxdata: https://helm.influxdata.com/
-    #bitnami: https://charts.bitnami.com/bitnami
+  metallb: https://metallb.github.io/metallb
     
-# TODO: Allow to deploy without using this variable
-helm_local_chart_deployment:
-  #- prometheus
-  - influxdb2 
 
 helm_repository_chart_deployment:
-  - repo_name: elastic
-    repo_deployment_name: elasticsearch
-  - repo_name: elastic
-    repo_deployment_name: kibana
-  - repo_name: elastic
-    repo_deployment_name: logstash
-  #- repo_name: influxdata 
-  #  repo_deployment_name: influxdb2
+  - repo_name: metallb 
+    repo_deployment_name: metallb 

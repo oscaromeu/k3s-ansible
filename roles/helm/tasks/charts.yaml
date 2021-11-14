@@ -18,16 +18,9 @@
     helm repo add {{ item.key }} {{ item.value }} 
   loop: "{{ helm_chart_repositories | dict2items }}" 
 
-- name: Deploying local charts to monitoring namespace
-  command: >-
-    helm install {{ item }} {{ helm_chart_path }}/{{ item }} --kubeconfig ~{{ ansible_user }}/.kube/config
-  loop: "{{ helm_local_chart_deployment }}"
 
-    #- name: Deploying {{ item.repo_deployment_name }} instance
-    #  command: >-
-    #    helm upgrade --install  {{ item.repo_deployment_name }} {{ item.repo_name }}/{{ item.repo_deployment_name }} -f {{ helm_chart_path }}/{{ item.repo_deployment_name }}/values.yml --kubeconfig ~{{ ansible_user }}/.kube/config
-    #  loop: "{{ helm_repository_chart_deployment }}"
-    #
-    #- name: Deploy a Kibana instance
-    #  command: >-
-    #    helm install kibana elastic/kibana --kubeconfig ~{{ ansible_user }}/.kube/config
+- name: Deploying {{ item.repo_deployment_name }} instance
+  command: >-
+    helm upgrade --install  {{ item.repo_deployment_name }} {{ item.repo_name }}/{{ item.repo_deployment_name }} -f {{ helm_chart_path }}/{{ item.repo_deployment_name }}/values.yml --kubeconfig ~{{ ansible_user }}/.kube/config
+  loop: "{{ helm_repository_chart_deployment }}"
+
