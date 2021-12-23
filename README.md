@@ -8,12 +8,10 @@ This project starts from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) an
 Deployment environment must have Ansible > 2.4.0+. Master and worker nodes its desired that have passwordless SSH access. This role has been tested againts the following distributions:
 
 - [X] Debian
-- [ ] Arch Linux
 
 on processor architecture:
 
 - [X] arm64
-- [X] x64
 
 ## TODO
 
