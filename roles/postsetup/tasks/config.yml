@@ -1,3 +1,5 @@
+# TODO
+## Add configuration destination directory variables
 - name: Append config file to .zshrc 
   lineinfile:
     path: /home/pi/.bashrc
@@ -7,6 +9,8 @@
   copy:
     src: roles/postsetup/files/
     dest: /home/pi/k3s-monitoring-playground/manifest
+
+# TODO: Install the dashboard as its stated in https://rancher.com/docs/k3s/latest/en/installation/kube-dashboard/
 
 #GITHUB_URL=https://github.com/kubernetes/dashboard/releases
 #VERSION_KUBE_DASHBOARD=$(curl -w '%{url_effective}' -I -L -s -S ${GITHUB_URL}/latest -o /dev/null | sed -e 's|.*/||')

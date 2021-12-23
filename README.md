@@ -57,6 +57,11 @@ To remove the provisioned infrastructure use the following command:
 ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
+## High Availability k3s with kube-vip
+
+
+![HA Cluster](docs/img/HA-cluster.png) 
+
 ## MVP Status and Backlog
 - [X] Deploy the default K8s dashboard
 - [X] Acces kubectl without sudo
