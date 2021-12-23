@@ -65,16 +65,15 @@ ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ## MVP Status and Backlog
 - [X] Deploy the default K8s dashboard
 - [X] Acces kubectl without sudo
-- [ ] Testing with molecule
 - [ ] Choose to deploy the cluster with the following tools
   - [ ] Flux
   - [ ] Helm
   - [ ] Kustomize
+  - [ ] kube-vip
+- [ ] Deploy High Availability with External DB (postgresql)
 - [ ] Choose to deploy Metallb instead of the embedded LB 
 - [ ] Configure K3s with a configuration file avaible from v1.19.1+k3s1
 - [ ] Auto-deploying Manifests see https://rancher.com/docs/k3s/latest/en/advanced/
-- [ ] Support Arch based linux distros running on Raspberry Pi
-- [ ] Deploy High Availability with External DB
 - [ ] Redo the README  
 
 ## Author
