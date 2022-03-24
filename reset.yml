@@ -6,9 +6,4 @@
   roles:
     - role: reset
 
-- hosts: master
-  gather_facts: yes
-  become: yes
-  roles:
-    - { role: helm, tags: uninstall, "uninstall":true }
 

@@ -77,3 +77,6 @@
     src: /usr/local/bin/k3s
     dest: /usr/local/bin/crictl
     state: link
+
+- name: Configure default k3s components
+  include_tasks: configure.yml

@@ -1,8 +1,0 @@
----
-- name: Uninstall helm 
-  command: rm -rf {{ helm_bin_path }}
-  become: true
-  failed_when: false
-  when: uninstall|default(false)
-  tags:
-     - uninstall

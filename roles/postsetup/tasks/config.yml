@@ -1,26 +1,9 @@
-# TODO
 ## Add configuration destination directory variables
 - name: Append config file to .zshrc 
   lineinfile:
     path: /home/pi/.bashrc
     line: export KUBECONFIG=~pi/.kube/config
 
-- name: Copy dashabord manifest files to project directory
-  copy:
-    src: roles/postsetup/files/
-    dest: /home/pi/k3s-monitoring-playground/manifest
-
-# TODO: Install the dashboard as its stated in https://rancher.com/docs/k3s/latest/en/installation/kube-dashboard/
-
-#GITHUB_URL=https://github.com/kubernetes/dashboard/releases
-#VERSION_KUBE_DASHBOARD=$(curl -w '%{url_effective}' -I -L -s -S ${GITHUB_URL}/latest -o /dev/null | sed -e 's|.*/||')
-- name: Deploying the Kubernetes Dashboard
-  shell: >-
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.2.0/aio/deploy/recommended.yaml
-
-- name: Deploying admin-user Dashboard RBAC Configuration
-  command: >-
-    kubectl apply -f /home/pi/k3s-monitoring-playground/manifest/dashboard.admin-user.yml
 
 
 
