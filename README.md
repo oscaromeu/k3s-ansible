@@ -1,7 +1,7 @@
 # ![Raspberry Pi](documentation/img/logo_raspberry-pi.svg) k3s ansible 
 
 
-This project starts from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and adds some features. The goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible. 
+This project starts from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and adds some features and changes. The goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible. 
 
 ## Prerequisites 
 
