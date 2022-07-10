@@ -21,6 +21,5 @@
 - hosts: master
   become: yes
   roles:
-    - role: geerlingguy.pip
     - { role: postsetup, "config":true }
 

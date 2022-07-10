@@ -1,0 +1,3 @@
+{% if k3s_server is defined and k3s_server | length > 0 %}
+{{ k3s_server | to_nice_yaml(indent=2) }}
+{% endif %}

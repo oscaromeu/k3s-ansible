@@ -1,5 +1,8 @@
 ---
 
+- name: Generate master configuration file
+  include_tasks: configure.yml
+
 - name: Copy K3s service file
   template:
     src: "k3s.service.j2"

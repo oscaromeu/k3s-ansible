@@ -1,3 +1,49 @@
 k3s_version: "v1.23.4+k3s1"
-extra_server_args:
-  - "--disable servicelb"
+k3s_config_file: "/etc/rancher/k3s/config.yaml"
+k3s_config_yaml_d_dir: "/etc/rancher/k3s/config.yaml.d"
+
+
+
+##
+# Server Configuration
+##
+
+# k3s_server:
+#  listen-port: 6443
+
+k3s_server:
+  write-kubeconfig-mode: "0644"
+  #flannel-backend: 'none'  # This needs to be in quotes
+  # k3s Server config, don't deploy flannel and set cluster pod CIDR.
+  cluster-cidr: "10.42.0.0/16"
+  service-cidr: "10.43.0.0/16"
+  flannel-backend: 'none'
+  disable: servicelb
+# Deploy the following k3s server templates.
+k3s_server_manifests_templates: []
+
+# A list of URLs used for pre-configuring the cluster.
+k3s_server_manifests_urls:
+  - url: https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+    filename: tigera-operator.yml
+  - url: https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+    filename: custom-resources.yml
+
+# A list of templates used for installing static pod manifests on the control plane.
+k3s_server_pod_manifests_templates:
+  - "tests/manifests/podinfo.yml.j2"
+
+# A list of URLs used for installing static pod manifests on the control plane.
+k3s_server_pod_manifests_urls: []
+#  - url: https://some/url/to/manifest.yml
+#    filename: manifest.yml
+
+##
+# Agent Configuration
+##
+
+k3s_agent: {}
+# k3s_agent:
+#   node-label:
+#     - "foo=bar"
+#     - "bish=bosh"

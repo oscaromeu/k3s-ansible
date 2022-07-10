@@ -1,0 +1,24 @@
+k3s_config_file: "/etc/rancher/k3s/config.yaml"
+k3s_config_yaml_d_dir: "/etc/rancher/k3s/config.yaml.d"
+
+
+##
+# Server Configuration
+##
+
+# k3s_server:
+#  listen-port: 6443
+
+k3s_server:
+  write-kubeconfig-mode: "0644"
+  #flannel-backend: 'none'  # This needs to be in quotes
+
+##
+# Agent Configuration
+##
+
+k3s_agent: {}
+# k3s_agent:
+#   node-label:
+#     - "foo=bar"
+#     - "bish=bosh"

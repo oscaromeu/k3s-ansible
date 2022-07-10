@@ -55,25 +55,6 @@ To remove the provisioned infrastructure use the following command:
 ansible-playbook reset.yml -i inventory/my-cluster/hosts.ini
 ```
 
-## High Availability k3s with kube-vip
-
-
-![HA Cluster](docs/img/HA-cluster.png) 
-
-## MVP Status and Backlog
-- [X] Deploy the default K8s dashboard
-- [X] Acces kubectl without sudo
-- [ ] Choose to deploy the cluster with the following tools
-  - [ ] Flux
-  - [ ] Helm
-  - [ ] Kustomize
-  - [ ] kube-vip
-- [ ] Deploy High Availability with External DB (postgresql)
-- [ ] Choose to deploy Metallb instead of the embedded LB 
-- [ ] Configure K3s with a configuration file avaible from v1.19.1+k3s1
-- [ ] Auto-deploying Manifests see https://rancher.com/docs/k3s/latest/en/advanced/
-- [ ] Redo the README  
-
 ## Author
 
 oscaromeu (https://github.com/oscaromeu)

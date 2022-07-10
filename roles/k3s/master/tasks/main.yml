@@ -1,5 +1,8 @@
 ---
 
+- name: Generate master configuration file
+  include_tasks: configure.yml
+
 - name: Copy K3s service file
   register: k3s_service
   template:
@@ -78,5 +81,5 @@
     dest: /usr/local/bin/crictl
     state: link
 
-- name: Configure default k3s components
-  include_tasks: configure.yml
+- name: Auto deploy configuration manifests
+  include_tasks: resources.yml

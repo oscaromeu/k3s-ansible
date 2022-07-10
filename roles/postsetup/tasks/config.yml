@@ -2,8 +2,11 @@
 - name: Append config file to .zshrc 
   lineinfile:
     path: /home/pi/.bashrc
-    line: export KUBECONFIG=~pi/.kube/config
-
+    line: export KUBECONFIG=~{{ ansible_user }}/.kube/config
+  when: >
+    raspberry_pi|default(false) and
+    ( ansible_facts.lsb.id|default("") == "Raspbian" or
+      ansible_facts.lsb.description|default("") is match("[Rr]aspbian.*") )
 
 
 

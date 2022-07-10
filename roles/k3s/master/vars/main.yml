@@ -1,0 +1,13 @@
+# Config directory location for k3s
+k3s_config_dir: "{{ k3s_config_file | dirname }}"
+
+# Data directory location for k3s
+k3s_data_dir: "/var/lib/rancher/k3s"
+
+# Path for additional Kubernetes Manifests
+# https://rancher.com/docs/k3s/latest/en/advanced/#auto-deploying-manifests
+k3s_server_manifests_dir: "{{ k3s_data_dir }}/server/manifests"
+
+# Path for static pod manifests that are deployed on the control plane
+# https://github.com/k3s-io/k3s/pull/1691
+k3s_server_pod_manifests_dir: "{{ k3s_data_dir }}/agent/pod-manifests"
