@@ -1,4 +1,4 @@
-# ![Raspberry Pi](documentation/img/logo_raspberry-pi.svg) k3s playground 
+# ![Raspberry Pi](documentation/img/logo_raspberry-pi.svg) k3s ansible 
 
 
 This project starts from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and adds some features. The goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible. 
@@ -12,6 +12,7 @@ Deployment environment must have Ansible > 2.4.0+. Master and worker nodes its d
 on processor architecture:
 
 - [X] arm64
+- [X] x86
 
 ## TODO
 
