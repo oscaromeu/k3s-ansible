@@ -1,0 +1,50 @@
+---
+
+- name: Check if cilium binary exists.
+  stat:
+    path: "{{ cilium_bin_path }}"
+  register: cilium_check
+  when:
+    - cni_provider == 'cilium'
+
+- name: Check if cilium is already deployed
+  shell: > 
+    kubectl get pods -n kube-system -o json | jq -r '.items[] | select(.metadata.name | test("cilium"))|.metadata.name' |wc -l
+  register: cilium_running
+  when:
+    - cni_provider == 'cilium' 
+
+
+- name: Install cilium
+  command: cilium install
+  become: false
+  changed_when: false
+  register: cilium_install_stdout
+  when:
+    - cni_provider == 'cilium'
+    - cilium_running.stdout == '0'
+
+
+# https://rancher.com/docs/k3s/latest/en/advanced/#auto-deploying-manifests
+- name: Ensure auto-deploying manifests are copied to the primary controller
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "{{ k3s_server_manifests_dir }}/{{ item | basename | replace('.j2','') }}"
+    mode: 0644
+  loop: "{{ k3s_server_manifests_templates }}"
+  when:
+    - k3s_server_manifests_templates | length > 0
+    - cni_provider == 'calico'
+
+- name: Ensure auto-deploying manifests are downloaded to the primary controller
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "{{ k3s_server_manifests_dir }}/{{ item.filename | default(item.url | basename) }}"
+    mode: 0644
+  loop: "{{ k3s_server_manifests_urls }}"
+  when:
+    - not ansible_check_mode
+    - k3s_server_manifests_urls | length > 0
+    - cni_provider == 'calico'
+
+

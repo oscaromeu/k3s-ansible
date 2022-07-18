@@ -1,0 +1,10 @@
+---
+# handlers file for ansible_role_cilium
+- name: copy cilium binary
+  copy:
+    src: /tmp/cilium
+    dest: "{{ cilium_bin_path }}"
+    mode: 0755
+    owner: root
+    group: root
+    remote_src: true

@@ -1,0 +1,12 @@
+---
+- src: geerlingguy.pip
+  name: pip
+
+- src: oscaromeu.cilium
+  version: 0.1.0
+  name: cilium
+
+- src: oscaromeu.k8s_tools
+  version: 0.1.0
+  name: k8s-tools
+
