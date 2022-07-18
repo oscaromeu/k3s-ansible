@@ -1,24 +1,51 @@
 # ![Raspberry Pi](documentation/img/logo_raspberry-pi.svg) k3s ansible 
 
 
-This project starts from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and adds some features and changes. The goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible. 
+This project starts from [k3s-ansible](https://github.com/k3s-io/k3s-ansible) and adds some features and changes. The goal is to easily spin up and configure k3s cluster with all the needed tools via Ansible.
 
 ## Prerequisites 
 
 Deployment environment must have Ansible > 2.4.0+. Master and worker nodes its desired that have passwordless SSH access. This role has been tested againts the following distributions:
 
-- [X] Debian
+- [X] Debian 
+    - Debian 11 bullseye 
+- [X] Ubuntu
+    - Ubuntu 22.04 LTS (Jammy Jellyfish)
 
 on processor architecture:
 
 - [X] arm64
 - [X] x86
 
-## TODO
+## Repository structure
+
+The Git repository contains the following directories
+
+```
+├── collections
+├── ...
+├── inventory
+│   ├── ...
+|   └── sample
+├── roles
+│   ├── cilium
+│   ├── cni
+│   ├── download
+│   ├── k3s
+│   ├── pip
+│   ├── postsetup
+│   ├── prereq
+│   ├── raspberrypi
+|   └── reset
+├── ...
+├── reset.yml
+├── site.yml
+└── ansible.cfg
+```
 
 ## Usage
 
-### Deploy
+### Default deployment
 
 First create a new directory based on the `sample` directory within the `inventory` directory:
 

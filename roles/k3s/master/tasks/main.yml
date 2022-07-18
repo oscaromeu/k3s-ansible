@@ -80,6 +80,3 @@
     src: /usr/local/bin/k3s
     dest: /usr/local/bin/crictl
     state: link
-
-- name: Auto deploy configuration manifests
-  include_tasks: resources.yml

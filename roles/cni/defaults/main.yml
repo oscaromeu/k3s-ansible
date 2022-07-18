@@ -1,0 +1,19 @@
+---
+# cni_provider allows to select which cni provider install posible values are cilium, calico 
+cni_provider: calico
+
+# k3s path to store manifest to autodeploy
+# 
+k3s_config_yaml_d_dir: "/etc/rancher/k3s/config.yaml.d"
+
+# Deploy the following k3s server templates.
+k3s_server_manifests_templates:
+  - "../files/calico.yaml"
+
+# A list of URLs used for pre-configuring the cluster.
+k3s_server_manifests_urls:
+#  calico operator files
+  - url: https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+    filename: tigera-operator.yml
+  - url: https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+    filename: custom-resources.yml

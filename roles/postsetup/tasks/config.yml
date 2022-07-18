@@ -1,7 +1,8 @@
 ## Add configuration destination directory variables
-- name: Append config file to .zshrc 
+
+- name: export kubeconfig to .zshrc 
   lineinfile:
-    path: /home/pi/.bashrc
+    path: ~/{{ ansible_user }}/.bashrc
     line: export KUBECONFIG=~{{ ansible_user }}/.kube/config
   when: >
     raspberry_pi|default(false) and

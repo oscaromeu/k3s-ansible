@@ -1,0 +1,86 @@
+---
+- name: Remove cilium cni
+  file:
+    path: "{{ cilium_bin_path }}"
+    state: absent
+  when: uninstall_tools
+
+- name: Check if cilium binary exists.
+  stat:
+    path: "{{ cilium_bin_path }}"
+  register: cilium_check
+
+- name: Check cilium version.
+  command: "{{ cilium_bin_path }} version"
+  failed_when: false
+  changed_when: false
+  register: cilium_existing_version
+
+- name: Detect host architecture and set facts
+  set_fact: os_arch="amd64" kubectl_arch="amd64"
+  register: result
+  when: ansible_facts.architecture == "x86_64"
+
+- name: Download cilium hash from Github URL
+  get_url:
+    url: "https://github.com/cilium/cilium-cli/releases/download/v{{ cilium_version }}/cilium-linux-{{ os_arch }}.tar.gz.sha256sum"
+    dest: /tmp
+    mode: 0644
+  when: >
+    (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
+    and not uninstall_tools
+
+- name: Compute sha256 sum
+  shell: >
+    set -o pipefail && \
+    cat /tmp/cilium-linux-{{ os_arch }}.tar.gz.sha256sum| grep cilium-linux-{{ os_arch }}.tar.gz | cut -f 1 -d ' '
+  changed_when: false
+  args:
+    executable: /bin/bash
+  register: sha256
+  when: >
+    (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
+    and not uninstall_tools
+
+- name: Set fact cilium checksum binary result
+  set_fact: "cilium_checksum_binary={{ sha256.stdout }}"
+  when: >
+    (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
+    and not uninstall_tools
+
+- name: Show extracted checksum
+  debug: msg="{{ cilium_checksum_binary }}"
+  failed_when: false
+  when: >
+    (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
+    and not uninstall_tools
+
+- name: Download cilium file to unarchive
+  get_url:
+    url: "https://github.com/cilium/cilium-cli/releases/download/v{{ cilium_version }}/cilium-linux-{{ os_arch }}.tar.gz"
+    checksum: "sha256:{{ cilium_checksum_binary }}"
+    dest: /tmp
+    mode: 0644
+  when: >
+    (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
+    and not uninstall_tools
+
+- name: Unarchive cilium binary
+  unarchive:
+    src: /tmp/cilium-linux-{{ os_arch }}.tar.gz
+    dest: /tmp
+    remote_src: true
+    mode: 0755
+  when: >
+    (not cilium_check.stat.exists and not uninstall_tools)
+
+- name: copy cilium binary
+  copy:
+    src: /tmp/cilium
+    dest: "{{ cilium_bin_path }}"
+    mode: 0755
+    owner: root
+    group: root
+    remote_src: true
+  when: >
+    (not cilium_check.stat.exists and not uninstall_tools)
