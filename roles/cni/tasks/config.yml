@@ -1,17 +1,5 @@
 ---
 
-- name: Ensure that the config.yaml.d directory exists
-  ansible.builtin.file:
-    state: directory
-    path: "{{ k3s_config_yaml_d_dir }}"
-    mode: 0755
-
-- name: Ensure k3s config file exists
-  ansible.builtin.template:
-    src: config.yml.j2
-    dest: "{{ k3s_config_file }}"
-    mode: 0644
-
 - name: Check if cilium binary exists.
   stat:
     path: "{{ cilium_bin_path }}"
