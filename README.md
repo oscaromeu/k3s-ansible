@@ -79,8 +79,6 @@ ansible-playbook site.yml -i inventory/my-cluster/hosts.ini
 
 Create an inventory as explained in the default deployment section. Add the following configuration on `roles/k3s/master/defaults/main.yml`
 
-> Note: If 192.168.0.0/16 is already in use within your network you must select a different pod network CIDR by replacing 192.168.0.0/16 in the above command.
-
 ```yml
 # Server Configuration
 k3s_server:
@@ -90,6 +88,8 @@ k3s_server:
   disable-network-policy: true
   cluster-cidr: "192.168.0.0/16"
 ```
+
+> Note: If 192.168.0.0/16 is already in use within your network you must select a different pod network CIDR by replacing 192.168.0.0/16 in the above command.
 
 and in `roles/cni/defaults/main.yml` select calico as a cni provider
 
@@ -101,6 +101,26 @@ Finally start the provisioning the cluster
 
 ```
 ansible-playbook site.yml -i inventory/my-cluster/hosts.ini
+```
+
+```
+$ kubectl get pods -n kube-system
+NAME                                       READY   STATUS      RESTARTS   AGE
+calico-node-bwknn                          1/1     Running     0          21m
+calico-node-qppcl                          1/1     Running     0          21m
+calico-node-j5hj2                          1/1     Running     0          21m
+local-path-provisioner-6c79684f77-d4k8h    1/1     Running     0          29m
+calico-node-gqwmb                          1/1     Running     0          21m
+coredns-5789895cd-vcc8f                    1/1     Running     0          29m
+calico-kube-controllers-7bc6547ffb-d4jwl   1/1     Running     0          21m
+helm-install-traefik-crd-m4r68             0/1     Completed   0          29m
+metrics-server-7cd5fcb6b7-hj4ww            1/1     Running     0          29m
+helm-install-traefik-5ppnp                 0/1     Completed   2          29m
+svclb-traefik-m7rnc                        2/2     Running     0          17m
+svclb-traefik-l6xxh                        2/2     Running     0          17m
+svclb-traefik-fpfgz                        2/2     Running     0          17m
+svclb-traefik-bkhpm                        2/2     Running     0          17m
+traefik-58b759688b-xvcvw                   1/1     Running     0          17m
 ```
 
 ### Deploy k3s with [Cilium](https://cilium.io/)
