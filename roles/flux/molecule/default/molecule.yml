@@ -1,0 +1,39 @@
+---
+role_name_check: 1
+dependency:
+  name: galaxy
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+driver:
+  name: docker
+platforms:
+  - name: archlinux
+    image: "oscaromeu/docker-archlinux-ansible:latest"
+    # command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      # - /tmp <= needs investigation
+      - /run
+      - /run/lock
+    privileged: true
+    pre_build_image: true
+  - name: debian11
+    image: "geerlingguy/docker-debian11-ansible:latest"
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    privileged: true
+    pre_build_image: true
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+verifier:
+  name: ansible

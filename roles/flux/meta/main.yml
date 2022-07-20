@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: flux
+  author: oscaromeu
+  description: "Installation role for flux v2"
+
+  license: license (MIT)
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: Debian
+      versions:
+        - 11
+    - name: Archlinux
+      versions:
+        - rolling
+
+  galaxy_tags:
+    - kubernetes
+    - cli
+    - gitops
+    - flux
+
+dependencies: []

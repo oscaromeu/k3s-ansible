@@ -1,0 +1,5 @@
+---
+- name: Remove Flux binary
+  file:
+    path: "{{ flux_bin_path }}"
+    state: absent

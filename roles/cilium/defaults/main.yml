@@ -8,7 +8,7 @@ cilium_version: 0.11.11
 os_arch: arm64
 
 # path instalation
-cilium_bin_path: /usr/local/bin/cilium
+cilium_bin_path: /usr/local/bin
 
 # Uninstall will make use of file module and remove binaries with absent state
 uninstall_tools: false

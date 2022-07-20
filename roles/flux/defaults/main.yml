@@ -1,0 +1,12 @@
+---
+# Uninstall will make use of file module and remove binaries with absent state
+uninstall: false
+
+# OS and hardware architectire
+flux_platform: linux
+
+# See https://github.com/fluxcd/flux2/releases
+flux_version: "0.31.4"
+
+# The location where the flux binary will be installed.
+flux_bin_path: /usr/local/bin/flux

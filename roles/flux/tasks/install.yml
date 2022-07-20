@@ -1,0 +1,78 @@
+---
+
+- name: Check if flux binary exists.
+  stat:
+    path: "{{ flux_bin_path }}"
+  register: flux_check
+
+- name: Check flux version.
+  command: "{{ flux_bin_path }} version"
+  failed_when: false
+  changed_when: false
+  register: flux_existing_version
+
+# TODO: Add another task to detect arm64 architecture
+- name: Detect host architecture and set facts
+  set_fact: flux_arch="amd64"
+  register: result
+  when: ansible_facts.architecture == "x86_64"
+
+- name: Detect host architecture and set facts
+  set_fact: flux_arch="arm64"
+  register: result
+  when: ansible_facts.architecture == "aarch64"
+
+- name: Download flux hash from Github URL
+  get_url:
+    url: "https://github.com/fluxcd/flux2/releases/download/v{{ flux_version }}/flux_{{ flux_version }}_checksums.txt"
+    dest: /tmp
+    mode: 0644
+  when: >
+    (not flux_check.stat.exists or flux_version not in flux_existing_version.stdout)
+    and not uninstall
+
+- name: Compute sha256 sum
+  shell: >
+    set -o pipefail && \
+    cat /tmp/flux_{{ flux_version }}_checksums.txt| grep flux_{{ flux_version }}_{{ flux_platform }}_{{ flux_arch }}.tar.gz | cut -f 1 -d ' '
+  changed_when: false
+  args:
+    executable: /bin/bash
+  register: sha256
+  when: >
+    (not flux_check.stat.exists or flux_version not in flux_existing_version.stdout)
+    and not uninstall
+
+- name: Set fact flux checksum binary result
+  set_fact: "flux_checksum_binary={{ sha256.stdout }}"
+  when: >
+    (not flux_check.stat.exists or flux_version not in flux_existing_version.stdout)
+    and not uninstall
+
+- name: Show extracted checksum
+  debug: msg="{{ flux_checksum_binary }}"
+  failed_when: false
+  when: >
+    (not flux_check.stat.exists or flux_version not in flux_existing_version.stdout)
+    and not uninstall
+
+- name: Download flux file to unarchive
+  get_url:
+    url: "https://github.com/fluxcd/flux2/releases/download/v{{ flux_version }}/flux_{{ flux_version }}_{{ flux_platform }}_{{ flux_arch }}.tar.gz"
+    checksum: "sha256:{{ flux_checksum_binary }}"
+    dest: /tmp
+    mode: 06441
+  when: >
+    (not flux_check.stat.exists or flux_version not in flux_existing_version.stdout)
+    and not uninstall
+
+- name: Unarchive flux binary
+  unarchive:
+    src: /tmp/flux_{{ flux_version }}_{{ flux_platform }}_{{ flux_arch }}.tar.gz
+    dest: /tmp
+    remote_src: true
+    mode: 0755
+  notify: copy flux binary
+  when: >
+    (not flux_check.stat.exists or flux_version not in flux_existing_version.stdout)
+    and not uninstall

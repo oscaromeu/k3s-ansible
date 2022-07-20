@@ -29,7 +29,6 @@
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
     and not uninstall_tools
-
 - name: Compute sha256 sum
   shell: >
     set -o pipefail && \
@@ -41,20 +40,17 @@
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
     and not uninstall_tools
-
 - name: Set fact cilium checksum binary result
   set_fact: "cilium_checksum_binary={{ sha256.stdout }}"
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
     and not uninstall_tools
-
 - name: Show extracted checksum
   debug: msg="{{ cilium_checksum_binary }}"
   failed_when: false
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
     and not uninstall_tools
-
 - name: Download cilium file to unarchive
   get_url:
     url: "https://github.com/cilium/cilium-cli/releases/download/v{{ cilium_version }}/cilium-linux-{{ os_arch }}.tar.gz"
@@ -64,23 +60,13 @@
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
     and not uninstall_tools
-
 - name: Unarchive cilium binary
   unarchive:
     src: /tmp/cilium-linux-{{ os_arch }}.tar.gz
     dest: /tmp
     remote_src: true
     mode: 0755
+  notify: copy cilium binary
   when: >
-    (not cilium_check.stat.exists and not uninstall_tools)
-
-- name: copy cilium binary
-  copy:
-    src: /tmp/cilium
-    dest: "{{ cilium_bin_path }}"
-    mode: 0755
-    owner: root
-    group: root
-    remote_src: true
-  when: >
-    (not cilium_check.stat.exists and not uninstall_tools)
+    (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
+    and not uninstall_tools
