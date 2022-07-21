@@ -1,5 +1,0 @@
----
-# tasks file for ansible_role_cilium
-- name: Install cilium
-  include_tasks: install-cilium.yml
-  tags: cilium

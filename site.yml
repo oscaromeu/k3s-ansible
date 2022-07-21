@@ -20,9 +20,6 @@
 - hosts: master
   become: yes
   roles:
-    #- { role: pip }
-    #- { role: cilium, "config":true }
     - { role: cni, "config":true }
     - { role: postsetup, "config":true }
-    - { role: flux, flux_version: "0.31.4" }
 

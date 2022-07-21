@@ -23,14 +23,9 @@ k3s_server:
   #cluster-cidr: "10.42.0.0/16"
   #service-cidr: "10.43.0.0/16"
 
-  # calico configuration
+  #calico configuration
   flannel-backend: 'none'
   disable-network-policy: true
-  cluster-cidr: "192.168.0.0/16"
-
-  # cilium/calico configuration
-  #flannel-backend: 'none'
-  #disable-network-policy: true
 
 
 # Deploy the following k3s server templates.

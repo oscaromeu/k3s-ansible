@@ -2,11 +2,11 @@
 - src: geerlingguy.pip
   name: pip
 
-- src: oscaromeu.cilium
-  version: 0.1.0
-  name: cilium
-
 - src: oscaromeu.flux
   version: 0.1.2
   name: flux
+
+- src: oscaromeu.helm
+  version: 0.1.0
+  name: helm
 

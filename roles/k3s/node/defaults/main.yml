@@ -8,6 +8,3 @@ k3s_config_yaml_d_dir: "/etc/rancher/k3s/config.yaml.d"
 
 # https://rancher.com/docs/k3s/latest/en/installation/install-options/agent-config/#node
 k3s_agent: []
-  ## cilium configuration
-  #node-taint:
-  #  - "node.cilium.io/agent-not-ready=true:NoSchedule"

@@ -1,30 +1,5 @@
 ---
 
-- name: Check if cilium binary exists.
-  stat:
-    path: "{{ cilium_bin_path }}"
-  register: cilium_check
-  when:
-    - cni_provider == 'cilium'
-
-- name: Check if cilium is already deployed
-  shell: > 
-    kubectl get pods -n kube-system -o json | jq -r '.items[] | select(.metadata.name | test("cilium"))|.metadata.name' |wc -l
-  register: cilium_running
-  when:
-    - cni_provider == 'cilium' 
-
-
-- name: Install cilium
-  command: cilium install
-  become: false
-  changed_when: false
-  register: cilium_install_stdout
-  when:
-    - cni_provider == 'cilium'
-    - cilium_running.stdout == '0'
-
-
 # https://rancher.com/docs/k3s/latest/en/advanced/#auto-deploying-manifests
 - name: Ensure auto-deploying manifests are copied to the primary controller
   ansible.builtin.template:

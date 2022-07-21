@@ -1,9 +1,0 @@
----
-- name: Install flux v2
-  include_tasks: install.yml
-  tags: flux
-
-- name: Uninstall flux v2
-  include_tasks: uninstall.yml
-  when: uninstall
-  tags: flux

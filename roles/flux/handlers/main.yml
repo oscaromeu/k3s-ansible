@@ -1,9 +1,0 @@
----
-
-- name: copy flux binary
-  copy:
-    src: "/tmp/flux"
-    dest: "{{ flux_bin_path }}"
-    mode: 0755
-    remote_src: true
-  become: true
